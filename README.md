@@ -1,12 +1,6 @@
-# Pi-WAP
+### Raspberry Pi Wireless Access Point Setup
 
 This GitHub repository contains technical documentation for transforming a Raspberry Pi 5 into a Wireless Access Point. Additionally, it provides a GUI written in Python to display the IP addresses of all connected devices.
-
----
-
-## Raspberry Pi Wireless Access Point Setup
-
-Create a wireless access point using a Raspberry Pi, with options for both internet-connected and isolated network configurations.
 
 ---
 
@@ -17,7 +11,7 @@ Create a wireless access point using a Raspberry Pi, with options for both inter
 
 ---
 
-### 1. Installation Steps
+## 1. Installation Steps
 
 #### Initial Package Installation
 ```bash
@@ -25,7 +19,7 @@ sudo apt update
 sudo apt install hostapd dnsmasq tcpdump wireshark iptables-persistent
 sudo systemctl unmask hostapd
 ```
-### 2. Access Point Configuration
+## 2. Access Point Configuration
 
 1. Create the `hostapd` configuration file and add the following configuration:
    ```bash
@@ -55,4 +49,29 @@ sudo systemctl unmask hostapd
     ctrl_interface_group=0   # Who can control the access point
 
 Note: Some of these settings are optional, I just have them set up for proof of concept and more optional control. 
-   
+
+---
+
+## 3. DHCP Server Configuration
+
+1. Backup and create the `dnsmasq` configuration:
+   ```bash
+   sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+   sudo nano /etc/dnsmasq.conf
+
+2. If you plan on using the internet, add this to the file:
+   ```bash
+   interface=wlan0
+   dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+   domain=wlan
+   address=/gw.wlan/192.168.4.1
+
+3. If you plan on setting up an Isolated network, simply change it slightly: 
+   ```bash
+   interface=wlan0
+   dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+   domain=local
+   no-resolv
+   no-poll 
+```
+---
