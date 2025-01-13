@@ -31,17 +31,17 @@ sudo systemctl unmask hostapd
    ```bash
    sudo nano /etc/hostapd/hostapd.conf
    
-### Basic Network Settings
+#### Basic Network Settings
     interface=wlan0          # Which wireless card to use
     driver=nl80211           # The driver that talks to your WiFi hardware
     ssid=NetworkName         # The WiFi name that appears on devices
     hw_mode=g                # Uses 2.4GHz band (most compatible)
     channel=7                # Which WiFi channel to broadcast on
-### Technical Settings
+#### Technical Settings
     wmm_enabled=0           # Disables WiFi multimedia features
     macaddr_acl=0           # No MAC address filtering
 
-### Security Settings
+#### Security Settings
     auth_algs=1              # WPA authentication
     ignore_broadcast_ssid=0  # Show SSID in network lists
     wpa=2                    # Uses WPA2 security (most secure common option)
@@ -50,7 +50,7 @@ sudo systemctl unmask hostapd
     wpa_pairwise=TKIP        # WPA encryption
     rsn_pairwise=CCMP        # WPA2 encryption
 
-### Control Settings
+#### Control Settings
     ctrl_interface=/var/run/hostapd     # Where other programs can talk to hostapd
     ctrl_interface_group=0   # Who can control the access point
 ```
