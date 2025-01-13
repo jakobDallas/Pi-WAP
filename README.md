@@ -19,6 +19,7 @@ sudo apt update
 sudo apt install hostapd dnsmasq tcpdump wireshark iptables-persistent
 sudo systemctl unmask hostapd
 ```
+
 ## 2. Access Point Configuration
 
 1. Create the `hostapd` configuration file and add the following configuration:
@@ -50,8 +51,6 @@ sudo systemctl unmask hostapd
 
 Note: Some of these settings are optional, I just have them set up for proof of concept and more optional control. 
 
----
-
 ## 3. DHCP Server Configuration
 
 1. Backup and create the `dnsmasq` configuration:
@@ -73,4 +72,59 @@ Note: Some of these settings are optional, I just have them set up for proof of 
    domain=local
    no-resolv
    no-poll 
+   ```
+   
+## 4. Network Interface Configuration
+
+1. Configure the network interface:
+   ```bash
+   sudo nano /etc/network/interfaces.d/wlan0
+2. Now add this configuration:
 ```
+allow-hotplug wlan0
+iface wlan0 inet static
+    address 192.168.4.1
+    netmask 255.255.255.0
+```
+
+## 5. IP Forwarding Configuration (Internet-Connected Only)
+
+1. Edit the `sysctl` configuration file:
+   ```bash
+   sudo nano /etc/sysctl.conf
+
+2. Find and Uncomment this line:
+   ```
+   net.ipv4.ip_forward=1
+   ```
+3. Save and Apply the settings using:
+   ```bash
+   sudo sysctl -p
+   ```
+   
+## 6. NAT Configuration (Internet-Connected Only)
+
+1. Add a NAT rule for outgoing traffic and save it:
+   ```bash
+   sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+   sudo netfilter-persistent save
+
+Now the wireless Acsess point should be visible to connect to on your devices. 
+
+### Network Monitoring
+
+For monitoring connected devices use the software we previously installed:
+
+Using tcpdump:
+```bash
+   sudo tcpdump -i wlan0 -w capture.pcap
+```
+Using Wireshark:
+```bash
+   sudo wireshark
+```
+Or you can download and run the Python Script in this repo to view the connected devices on your network. 
+
+   
+   
+
