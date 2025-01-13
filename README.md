@@ -53,6 +53,6 @@ sudo systemctl unmask hostapd
 #### Control Settings
     ctrl_interface=/var/run/hostapd     # Where other programs can talk to hostapd
     ctrl_interface_group=0   # Who can control the access point
-```
+
 
    
