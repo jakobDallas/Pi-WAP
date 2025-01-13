@@ -117,11 +117,11 @@ For monitoring connected devices use the software we previously installed:
 
 Using tcpdump:
 ```bash
-   sudo tcpdump -i wlan0 -w capture.pcap
+sudo tcpdump -i wlan0 -w capture.pcap
 ```
 Using Wireshark:
 ```bash
-   sudo wireshark
+sudo wireshark
 ```
 Or you can download and run the Python Script in this repo to view the connected devices on your network. 
 
