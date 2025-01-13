@@ -1,6 +1,6 @@
 # Raspberry Pi Wireless Access Point Setup
 
-This is my technical documentation on the commands and configurations I used to transform a Raspberry Pi 5 into a Wireless Access Point (WAP). The project provides step-by-step instructions for configuring the Raspberry Pi to broadcast a WiFi network and act as a router. Additionally, it includes a Python script for graphical user interface to display the IP addresses of all connected devices in real-time.
+This is my technical documentation on the commands and configurations I used to transform a Raspberry Pi 5 into a Wireless Access Point. The project provides step-by-step instructions for configuring the Raspberry Pi to broadcast a WiFi network and act as a router. Additionally, it includes a Python script for graphical user interface to display the IP addresses of all connected devices in real-time.
 
 The project supports two configurations:
 
